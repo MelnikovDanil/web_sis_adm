@@ -1,0 +1,47 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+</head>
+<body>
+{% for nav in navigation %}
+
+
+<header>
+    <img class="logo" src="{{ nav.logo_field.url }}">
+    <img class="title_logo" src="{{ nav.logo.url }}">
+</header>
+<main>
+    <div class="body">
+        <div class="navigation" style="height: 1200px">
+            <nav>
+                <ul>
+                    <li><a href="/">{{ nav.first_menu }}</a></li>
+                    <li><a href={% url 'demend' %}>{{ nav.second_menu }}</a></li>
+                    <li><a href={% url 'geography' %}>{{ nav.thierd_menu }}</a></li>
+                    <li><a href={% url 'skills' %}>{{ nav.fourth_menu }}</a></li>
+                    <li><a href={% url 'lastVacancy' %}>{{ nav.fifth_menu }}</a></li>
+                </ul>
+            </nav>
+        </div>
+        {% endfor %}
+                {% for main in home_info %}
+        <div class="home_text">
+            {{ main.text|safe }}
+            <div class="empty"></div>
+            <img class="home_img" src="{{ main.photo.url }}"/>
+        </div>
+    </div>
+ {% endfor %}
+</main>
+{% for navigator in navigation %}
+<footer>
+    <div class="foot">{{ navigator.author }}</div>
+</footer>
+{% endfor %}
+</body>
+</html>

@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>География</title>
+    <link rel="stylesheet" href="{% static "css/styles.css" %}">
+</head>
+<body>
+{% for nav in navigation %}
+
+
+<header>
+    <img class="logo" src="{{ nav.logo_field.url }}">
+    <img class="title_logo" src="{{ nav.logo.url }}">
+</header>
+<main>
+    <div class="body">
+        <div class="navigation" style="height: 1200px">
+            <nav>
+                <ul>
+                    <li><a href="/">{{ nav.first_menu }}</a></li>
+                    <li><a href={% url 'demend' %}>{{ nav.second_menu }}</a></li>
+                    <li><a href={% url 'geography' %}>{{ nav.thierd_menu }}</a></li>
+                    <li><a href={% url 'skills' %}>{{ nav.fourth_menu }}</a></li>
+                    <li><a href={% url 'lastVacancy' %}>{{ nav.fifth_menu }}</a></li>
+                </ul>
+            </nav>
+        </div>
+        {% endfor %}
+        <         {% for geography in geography_info %}
+        <div class="home_text" style="margin-top: 5%; margin-left: 20%">
+            <img class="geography_graph_1" src="{{ geography.photo1.url }}"/>
+            <img class="geography_graph_2" src="{{ geography.photo2.url }}"/>
+            <div class="tables">
+                {{ geography.content|safe }}
+            </div>
+            <h4 class="graph_title1">{{ geography.first_title }}</h4>
+            <h4 class="graph_title2">{{ geography.second_title }}</h4>
+        </div>
+    </div>
+{% endfor %}
+</main>
+{% for navigator in navigation %}
+<footer>
+    <div class="foot">{{ navigator.author }}</div>
+</footer>
+{% endfor %}
+</body>
+</html>
